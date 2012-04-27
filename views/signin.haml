@@ -1,0 +1,19 @@
+.box
+  %h2 Sign in
+  %form{:action => "/signin", :method => "post", "accept-charset" => "UTF-8"}
+    %fieldset
+      .clearfix
+        %label Email
+        .input
+          %input{:name => 'email', :size => '30', :type => 'email'}
+      .clearfix
+        %label Password
+        .input
+          %input{:name => 'password', :size => '30', :type => 'password'}
+      .clearfix
+        %label Remember me
+        .input
+          %input{:name => 'remember_me', :type => 'hidden', :value => '0'}
+          %input{:name => 'remember_me', :type => 'checkbox', :value => '1'}
+      .actions
+        %input{:name => 'commit', :type => 'submit', :value => 'Sign in', :class => 'btn primary'}

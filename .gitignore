@@ -1,0 +1,10 @@
+*.db
+*.sqlite3
+.bundle/*
+log/*
+*.swp
+*.swo
+.rvmrc
+deleted/*
+config/mongoid.yml
+vendor/*

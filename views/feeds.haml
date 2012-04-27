@@ -1,0 +1,16 @@
+.box
+  %h3= @title
+  .feeds
+    - @feeds.each do |feed|
+      .feed.feed_line
+        .pull-left.avatar
+          %a{:href => "/#{feed.user.name}/feeds"}
+            %img{:src => feed.user.gravatar_url }
+        .right_info
+          .title
+            %a{:href => "/#{feed.user.name}/feeds"} #{feed.user.name}
+            received a record on
+            %a{:href => "/feeds/#{feed.record.key}"} #{feed.record.name}
+            %span [#{feed.record.value}], which is measured at [#{feed.record.timestamp}] from [Wahoo BlueHR]
+          .time Synchronized to server at #{feed.timestamp} via #{feed.device.model} in #{feed.network.nil? ? "WIFI" : feed.network }
+  .paginate

@@ -1,0 +1,35 @@
+!!! 5
+%html
+  %head
+    %title Ardency Service
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}
+    %link{:href => '/stylesheets/bootstrap.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:href => '/stylesheets/application.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:src => '/javascripts/bootstrap.js', :type => 'text/javascript'}
+  %body
+    %div{:class => 'topbar', 'data-dropdown' => 'dropdown'}
+      .topbar-inner
+        .container
+          %h3
+            %a{:href => '/'} Ardency Service
+          %ul.nav
+            %li{:class => request.path == "/feeds" ? 'active' : ''}
+              %a{:href => '/feeds'} All Feeds          
+            - if current_user
+              %li{:class => request.path == "/#{current_user.name}/feeds" ? 'active' : ''}
+                %a{:href => "/#{current_user.name}/feeds"} My Feeds
+          - if current_user
+            %ul{:class => "nav secondary-nav", :id => "userbar"}
+              %li
+                %a{:href => "/#{current_user.name}/feeds"}= current_user.name
+              %li{:class => request.path =~/signout/ ? 'active' : ''}
+                %a{:href => "/signout"} Logout
+          - else
+            %ul{:class => "nav secondary-nav", :id => "userbar"}
+              %li{:class => request.path =~/signup/ ? 'active' : ''}
+                %a{:href => '/signup'} Sign up
+              %li{:class => request.path =~/signin/ ? 'active' : ''}
+                %a{:href => '/signin'} Sign in			    
+    .container
+      %div{:id => 'main'}
+        = yield
